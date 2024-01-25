@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:todo/conttroller/home_controller.dart';
 import 'package:todo/widgets/todo_card.dart';
 
 class MyHomePage extends StatelessWidget {
@@ -9,6 +11,9 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final HomeController homecontroller = Get.put(HomeController());
+
     return SafeArea(
       child: Scaffold(
          backgroundColor: Color.fromARGB(96, 214, 210, 210),
