@@ -77,19 +77,7 @@ class MyHomePage extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-            ToDoCard(
-              toDoMessage: 'Buy Groceries',
-            ),
-            ToDoCard(
-              toDoMessage: 'Go for a run',
-            ),
-            ToDoCard(
-              toDoMessage: 'Attend Meeting',
-            ),
-            ToDoCard(
-              toDoMessage: 'Study Flutter',
-            )
-      
+            ...homecontroller.todoList.map((todo) => ToDoCard(toDoMessage: todo.toDoMessage)).toList(),
              ], 
             ),
           ),
