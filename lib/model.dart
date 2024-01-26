@@ -1,5 +1,6 @@
-class ToDO {
+class Todo {
+  final int id;
   final String toDoMessage;
-  bool isChecked;
-  ToDO({required this.toDoMessage, this.isChecked = false});
+  bool isChecked=false;
+  Todo({required this.toDoMessage, required this.id,});
 }
