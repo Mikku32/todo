@@ -13,7 +13,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final HomeController homecontroller = Get.put(HomeController());
-
+    final _todomessagecontroller = TextEditingController();
     return SafeArea(
       child: Scaffold(
          backgroundColor: Color.fromARGB(96, 214, 210, 210),
@@ -39,7 +39,57 @@ class MyHomePage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
              children: [
+              Obx(() =>   Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                              
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(16),
+                    
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 18.0,
+                      vertical: 0
+                    ),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Search',
+                        prefixIcon: IconButton(onPressed: (){},
+                         icon: Icon(Icons.search),
+                         color: Color.fromARGB(255, 202, 201, 197),)
+                      ),
+                    ),
+                    
+                  ),
+                  
+                  
+                               ),
+                                SizedBox(
+              height: 40,
+             ),
+            Text("All ToDo's_",
+            style: GoogleFonts.aBeeZee(
+              fontSize: 20,
+              fontWeight: FontWeight.normal
+              
+            ),
+            ),
+                                 ...homecontroller.todoList.map((newTodo) => ToDoCard(toDoMessage: newTodo.toDoMessage))
+              .toList(),
+                ],
+              ),
+             
+            ),
+           
             
+            SizedBox(
+              height: 20,
+            ),
+           
              Container(
             
               decoration: BoxDecoration(
@@ -53,31 +103,20 @@ class MyHomePage extends StatelessWidget {
                   vertical: 0
                 ),
                 child: TextField(
+                  controller: _todomessagecontroller,
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintText: 'Search',
-                    prefixIcon: IconButton(onPressed: (){},
-                     icon: Icon(Icons.search),
-                     color: Color.fromARGB(255, 202, 201, 197),)
+                    hintText: 'Add todo',
+                   
+                    suffixIcon: IconButton(onPressed: (){
+                     Get.find<HomeController>().addTodo(_todomessagecontroller.text);
+                     _todomessagecontroller.clear();
+                     }, icon: Icon(Icons.add),)
                   ),
                 ),
               ),
               
              ),
-             SizedBox(
-              height: 40,
-             ),
-            Text("All ToDo's_",
-            style: GoogleFonts.aBeeZee(
-              fontSize: 20,
-              fontWeight: FontWeight.normal
-              
-            ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            ...homecontroller.todoList.map((todo) => ToDoCard(toDoMessage: todo.toDoMessage)).toList(),
              ], 
             ),
           ),
