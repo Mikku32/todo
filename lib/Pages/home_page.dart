@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:todo/widgets/add_todo.dart';
 import 'package:todo/conttroller/home_controller.dart';
 import 'package:todo/widgets/todo_card.dart';
 
@@ -75,8 +76,9 @@ class MyHomePage extends StatelessWidget {
                             fontSize: 20, fontWeight: FontWeight.normal),
                       ),
                       ...homecontroller.todoList
-                          .map((newTodo) =>
-                              ToDoCard(toDoMessage: newTodo.toDoMessage))
+                          .map((newTodo) => ToDoCard(todo: newTodo))
+                          .toList()
+                          .reversed
                           .toList(),
                     ],
                   ),
@@ -84,30 +86,7 @@ class MyHomePage extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 18.0, vertical: 0),
-                    child: TextField(
-                      controller: _todomessagecontroller,
-                      decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'Add todo',
-                          suffixIcon: IconButton(
-                            onPressed: () {
-                              Get.find<HomeController>()
-                                  .addTodo(_todomessagecontroller.text);
-                              _todomessagecontroller.clear();
-                            },
-                            icon: Icon(Icons.add),
-                          )),
-                    ),
-                  ),
-                ),
+                AddBox(todomessagecontroller: _todomessagecontroller),
               ],
             ),
           ),
