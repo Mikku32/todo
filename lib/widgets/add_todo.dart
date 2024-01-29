@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../conttroller/home_controller.dart';
 
@@ -25,6 +26,9 @@ class AddBox extends StatelessWidget {
           decoration: InputDecoration(
               border: InputBorder.none,
               hintText: 'What you thinking...',
+              hintStyle: GoogleFonts.robotoSlab(
+                fontSize: 15,
+              ),
               suffixIcon: IconButton(
                 onPressed: () {
                   if (_todomessagecontroller.text.isEmpty) {
