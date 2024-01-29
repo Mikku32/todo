@@ -16,4 +16,8 @@ class HomeController extends GetxController {
   void deleteTodobyId(int id) {
     todoList.removeWhere((newTodo) => newTodo.id == id);
   }
+
+  void searchTodobyMessage(String message) {
+    todoList.where((newTodo) => newTodo.toDoMessage.contains(message));
+  }
 }

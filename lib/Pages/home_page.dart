@@ -36,59 +36,63 @@ class MyHomePage extends StatelessWidget {
             )
           ],
         ),
-        body: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Obx(
-                  () => Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 18.0, vertical: 0),
-                          child: TextField(
-                            decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: 'Search',
-                                prefixIcon: IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(Icons.search),
-                                  color: Color.fromARGB(255, 202, 201, 197),
-                                )),
+        body: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(
+            children: [
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Obx(
+                      () => Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 18.0, vertical: 0),
+                              child: TextField(
+                                decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: 'Search',
+                                    prefixIcon: IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(Icons.search),
+                                      color: Color.fromARGB(255, 202, 201, 197),
+                                    )),
+                              ),
+                            ),
                           ),
-                        ),
+                          SizedBox(
+                            height: 40,
+                          ),
+                          Text(
+                            "All ToDo's_",
+                            style: GoogleFonts.aBeeZee(
+                                fontSize: 20, fontWeight: FontWeight.normal),
+                          ),
+                          ...homecontroller.todoList
+                              .map((newTodo) => ToDoCard(todo: newTodo))
+                              .toList()
+                              .reversed
+                              .toList(),
+                        ],
                       ),
-                      SizedBox(
-                        height: 40,
-                      ),
-                      Text(
-                        "All ToDo's_",
-                        style: GoogleFonts.aBeeZee(
-                            fontSize: 20, fontWeight: FontWeight.normal),
-                      ),
-                      ...homecontroller.todoList
-                          .map((newTodo) => ToDoCard(todo: newTodo))
-                          .toList()
-                          .reversed
-                          .toList(),
-                    ],
-                  ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    AddBox(todomessagecontroller: _todomessagecontroller),
+                  ],
                 ),
-                SizedBox(
-                  height: 20,
-                ),
-                AddBox(todomessagecontroller: _todomessagecontroller),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
