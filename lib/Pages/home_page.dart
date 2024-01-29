@@ -13,7 +13,7 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final HomeController homecontroller = Get.put(HomeController());
-    final _todomessagecontroller = TextEditingController();
+    final todomessagecontroller = TextEditingController();
     return SafeArea(
       child: Scaffold(
         backgroundColor: Color.fromARGB(96, 214, 210, 210),
@@ -79,12 +79,10 @@ class MyHomePage extends StatelessWidget {
                             .map((newTodo) => ToDoCard(todo: newTodo))
                             .toList()
                             .reversed
-                            .toList(),
                       ],
                     ),
                   ),
-                  Spacer(),
-                  AddBox(todomessagecontroller: _todomessagecontroller),
+                  AddBox(todomessagecontroller: todomessagecontroller),
                 ],
               ),
             ],
