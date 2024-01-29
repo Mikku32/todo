@@ -24,11 +24,17 @@ class AddBox extends StatelessWidget {
           controller: _todomessagecontroller,
           decoration: InputDecoration(
               border: InputBorder.none,
-              hintText: 'Add todo',
+              hintText: 'What you thinking...',
               suffixIcon: IconButton(
                 onPressed: () {
-                  Get.find<HomeController>()
-                      .addTodo(_todomessagecontroller.text);
+                  if (_todomessagecontroller.text.isEmpty) {
+                    Get.snackbar(
+                      'Error',
+                      'Please Enter Something :(',
+                    );
+                  } else
+                    Get.find<HomeController>()
+                        .addTodo(_todomessagecontroller.text);
                   _todomessagecontroller.clear();
                 },
                 icon: Icon(Icons.add),
